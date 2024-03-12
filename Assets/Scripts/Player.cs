@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     private Food food;
     private int score = 0;
     private int wallLayer;
+    private List<Transform> parts;
+    [SerializeField] private Transform snakePartPrefab;
     [SerializeField] private TextMeshProUGUI scoreText;
 
     private void Awake()
@@ -25,6 +27,8 @@ public class Player : MonoBehaviour
     {
         food = FindObjectOfType<Food>();
         wallLayer = LayerMask.NameToLayer("Wall");
+        parts = new List<Transform>();
+        parts.Add(transform);
     }
 
     private void OnMovement(InputValue value)
@@ -39,6 +43,12 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        for (int i = parts.Count - 1; i > 0; i--)
+        {
+            parts[i].position = parts[i - 1].position;
+        }
+        
+
         rb.velocity = _direction * speed;
     }
 
@@ -48,6 +58,9 @@ public class Player : MonoBehaviour
         {
             score += 1;
             scoreText.text = $"Score: {score}";
+            Transform newPart = Instantiate(snakePartPrefab);
+            newPart.position = parts[parts.Count - 1].position;
+            parts.Add(newPart);
             food.MoveToRandomPosition();
         }else if (other.gameObject.layer == wallLayer)
         {
