@@ -7,7 +7,7 @@ Goals:
 - [TODO] it should work with DualSense, Keyboard Arrows, Screen Touch
 - [MAYBE] add non breaking walls (goes from left to right of screen, I don't know what to call it)
 - [MAYBE] add timer foods with extra points
-- [TODO] add GUI for score
+- [DONE] add GUI for score
 - [TODO] add some audio
 
 ### Audios

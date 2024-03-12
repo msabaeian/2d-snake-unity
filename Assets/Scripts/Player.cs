@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Food food;
     private int score = 0;
+    private int wallLayer;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private void Awake()
     {
@@ -20,6 +24,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         food = FindObjectOfType<Food>();
+        wallLayer = LayerMask.NameToLayer("Wall");
     }
 
     private void OnMovement(InputValue value)
@@ -42,7 +47,11 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer == food.gameObject.layer)
         {
             score += 1;
+            scoreText.text = $"Score: {score}";
             food.MoveToRandomPosition();
+        }else if (other.gameObject.layer == wallLayer)
+        {
+            SceneManager.LoadScene("Scenes/Game");
         }
     }
 }
