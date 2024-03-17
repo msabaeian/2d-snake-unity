@@ -1,6 +1,12 @@
 ## snake
 #### just another playing around with unity
 
+
+
+https://github.com/msabaeian/2d-snake-unity/assets/73234920/2e628eba-1cf5-47ff-a378-1df1350578d5
+
+
+
 Goals:
 - [x] create game (food and snake)
 - [x] add some particle effect when snake eats food
