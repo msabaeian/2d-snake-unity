@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
             Transform newPart = Instantiate(snakePartPrefab);
             newPart.position = parts[parts.Count - 1].position;
             parts.Add(newPart);
-            food.MoveToRandomPosition();
+            food.Hit();
         }else if (other.gameObject.layer == wallLayer)
         {
             SceneManager.LoadScene("Scenes/Game");
