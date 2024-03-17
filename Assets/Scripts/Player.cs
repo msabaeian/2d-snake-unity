@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private int score = 0;
     private int wallLayer;
     private List<Transform> parts;
+    private AudioSource _bgAudioSource;
     [SerializeField] private Transform snakePartPrefab;
     [SerializeField] private TextMeshProUGUI scoreText;
 
@@ -29,6 +30,8 @@ public class Player : MonoBehaviour
         wallLayer = LayerMask.NameToLayer("Wall");
         parts = new List<Transform>();
         parts.Add(transform);
+        _bgAudioSource = GetComponent<AudioSource>();
+        _bgAudioSource.Play();
     }
 
     private void OnMovement(InputValue value)

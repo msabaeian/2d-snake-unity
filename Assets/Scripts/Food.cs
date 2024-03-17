@@ -7,12 +7,14 @@ public class Food : MonoBehaviour
     private int maxX = Screen.width - 50;
     private int maxY = Screen.height - 50;
     private Bounds bounds;
+    private AudioSource _eatAudioSource;
     [SerializeField] private BoxCollider2D bc;
     [SerializeField] private GameObject _particle;
     void Start()
     {
         bounds = bc.bounds;
         MoveToRandomPosition();
+        this._eatAudioSource = GetComponent<AudioSource>();
     }
 
     private void MoveToRandomPosition()
@@ -24,6 +26,7 @@ public class Food : MonoBehaviour
 
     public void Hit()
     {
+        _eatAudioSource.Play();
         Instantiate(this._particle, transform.position, Quaternion.identity);
         MoveToRandomPosition();
     }
